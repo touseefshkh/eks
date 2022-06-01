@@ -1,0 +1,58 @@
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  creationTimestamp: "2022-06-01T05:58:06Z"
+  finalizers:
+  - foregroundDeletion
+  generation: 17
+  name: cb-example
+  namespace: default
+  resourceVersion: "10323"
+  uid: 598f8317-e647-48ff-a5d1-dc9cefef0678
+spec:
+  networking:
+    exposeAdminConsole: true
+    adminConsoleServiceTemplate:
+      spec:
+        type: LoadBalancer
+    dns:
+      domain: cb-example.testcouchbase.com
+    tls:
+      secretSource:
+        serverSecretName: couchbase-server-tls
+  backup:
+    image: ""
+    serviceAccountName: couchbase-backup
+  buckets:
+    managed: true
+  cluster:
+    analyticsServiceMemoryQuota: 1Gi
+    autoCompaction:
+      databaseFragmentationThreshold:
+        percent: 30
+      timeWindow: {}
+      tombstonePurgeInterval: 72h0m0s
+      viewFragmentationThreshold:
+        percent: 30
+    autoFailoverMaxCount: 3
+    autoFailoverOnDataDiskIssuesTimePeriod: 2m0s
+    autoFailoverTimeout: 0m10s
+    dataServiceMemoryQuota: 256Mi
+    eventingServiceMemoryQuota: 256Mi
+    indexServiceMemoryQuota: 256Mi
+    indexStorageSetting: memory_optimized
+    searchServiceMemoryQuota: 256Mi
+  image: couchbase/server:7.0.3
+  logging: {}
+  security:
+    adminSecret: cb-example-auth
+    rbac: {}
+  servers:
+  - name: all_services
+    resources: {}
+    services:
+    - data
+    - index
+    - query
+    size: 2
+  xdcr: {}    
