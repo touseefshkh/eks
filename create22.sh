@@ -6,4 +6,8 @@ sleep 5
 couchbase-autonomous-operator-kubernetes_2.2.3-linux-x86_64/bin/cbopcfg create admission
 couchbase-autonomous-operator-kubernetes_2.2.3-linux-x86_64/bin/cbopcfg create operator
 sleep 10
+kubectl get pods
 kubectl create -f couchbase-autonomous-operator-kubernetes_2.2.3-linux-x86_64/couchbase-cluster.yaml
+sleep 10
+kubectl get pods
+
