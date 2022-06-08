@@ -30,4 +30,4 @@ tar -xf couchbase-autonomous-operator-kubernetes_2.2.3-linux-x86_64.tar.gz
 aws --version
 kubectl version --short --client
 eksctl version
-ll
+ls -lrth
